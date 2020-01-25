@@ -1,8 +1,9 @@
 ﻿Import-Csv "users.csv" | % {
 
 
-Set-ExecutionPolicy -Force Unrestricted
 
+Set-ExecutionPolicy -Force Unrestricted
+#import user Data
 $userName=$_.userName
 $HomeFolder=$_.HomeFolder
 
@@ -12,6 +13,7 @@ Write-Host "Creating User $userName"
 $password = ConvertTo-SecureString "Welcome@1234" -AsPlainText  -Force
 New-LocalUser $userName -Password $password
 
+#Creating Home Folder
 Write-Host "Creating Home Folder For $userName"
 #Folder Creation 
 New-Item -Path $HomeFolder -Name $userName  -ItemType "directory"
